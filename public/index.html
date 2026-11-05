@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lahass Tech Services</title>
+<meta name="description" content="Thiago Lahass, engenheiro de computação em Vitória (ES). Apps, sites e sistemas sob medida, do protótipo à publicação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237C8CFF'/%3E%3Cstop offset='1' stop-color='%235EE2D0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M22 16v32h22' fill='none' stroke='%23121826' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:title" content="Lahass Tech Services">
+<meta property="og:description" content="Apps, sites e sistemas sob medida, do primeiro rascunho à publicação.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lahasstechservices.org/">
+<meta name="theme-color" content="#E8EDF4">
+<style>
+/* Layout: frosted daylight glass over drifting lilac, mint and peach light; the hero hides the name behind a glass pane that slides away on scroll, then a process line and a pinned project rail follow the scroll. */
+:root{
+  --bg:#E8EDF4;
+  --bg-2:#F6F8FC;
+  --fg:#121826;
+  --muted:#56607A;
+  --lilac:#7C8CFF;
+  --mint:#5EE2D0;
+  --peach:#FFB36B;
+  --lilac-ink:#4B55C2;
+  --ink-on-accent:#FFFFFF;
+  --glass:rgba(255,255,255,.46);
+  --glass-strong:rgba(255,255,255,.66);
+  --edge:rgba(255,255,255,.75);
+  --line:rgba(18,24,38,.1);
+  --line-strong:rgba(18,24,38,.18);
+  --shadow:0 30px 60px -34px rgba(36,44,84,.35);
+  --font-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --font-body:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --radius-l:28px;
+  --radius-m:20px;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:60;background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lilac-ink);outline-offset:3px;border-radius:8px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+
+/* Aurora: three soft color fields that drift with scroll */
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.6;will-change:transform}
+.blob.lilac{width:46vw;height:46vw;max-width:640px;max-height:640px;background:var(--lilac);top:8vh;left:-8vw}
+.blob.mint{width:52vw;height:52vw;max-width:720px;max-height:720px;background:var(--mint);top:30vh;right:-14vw;opacity:.55}
+.blob.peach{width:30vw;height:30vw;max-width:420px;max-height:420px;background:var(--peach);top:62vh;left:34vw;opacity:.5}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;background-image:radial-gradient(rgba(18,24,38,.6) .6px,transparent .6px);background-size:3px 3px}
+main,header,footer{position:relative;z-index:2}
+
+.glass{background:var(--glass);border:1px solid var(--edge);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--shadow),inset 0 1px 0 var(--edge)}
+
+/* Nav */
+header{position:sticky;top:env(safe-area-inset-top, 0px);z-index:50;padding-top:14px}
+.nav{display:flex;align-items:center;gap:12px;justify-content:space-between;border-radius:999px;padding:8px 8px 8px 20px}
+.brand{font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.brand span{color:var(--muted);font-weight:600}
+.links{display:flex;gap:4px}
+.links a{text-decoration:none;color:var(--muted);font-weight:600;font-size:15px;padding:8px 14px;border-radius:999px}
+.links a:hover{color:var(--fg);background:var(--glass)}
+.nav-end{display:flex;align-items:center;gap:8px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{all:unset;cursor:pointer;font-size:13px;font-weight:700;padding:5px 10px;border-radius:999px;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--ink-on-accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;font-size:16px;padding:14px 24px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .2s ease, background .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--fg);color:var(--ink-on-accent);box-shadow:0 14px 30px -14px rgba(18,24,38,.6)}
+.btn-glass{background:var(--glass-strong);border-color:var(--edge);color:var(--fg)}
+.btn-small{padding:9px 16px;font-size:14px}
+
+/* Hero */
+.hero{position:relative}
+.hero-sticky{padding-block:clamp(40px,6vw,72px) clamp(56px,8vw,110px)}
+.stage{position:relative;display:grid;justify-items:center}
+/* Wide screens: the hero holds still while the glass slides off the name */
+@media (min-width:901px) and (prefers-reduced-motion:no-preference){
+  .hero{height:150vh}
+  .hero-sticky{position:sticky;top:60px}
+}
+.name{grid-area:1/1;font-family:var(--font-display);font-weight:800;font-size:clamp(92px,21vw,290px);line-height:.82;letter-spacing:-.055em;margin:0;color:var(--fg);will-change:transform;user-select:none;text-align:center}
+.name small{display:block;font-size:max(15px,.075em);letter-spacing:0;font-weight:600;color:var(--muted);margin-bottom:1.4em;line-height:1.2;font-family:var(--font-body)}
+.pane{grid-area:1/1;align-self:end;position:relative;width:min(780px,100%);margin-top:clamp(170px,20.5vw,290px);border-radius:36px;padding:clamp(24px,4vw,40px);will-change:transform}
+.pane p{margin:0;font-size:clamp(18px,1.8vw,22px);line-height:1.5;max-width:34em;color:var(--fg)}
+.pane p span{color:var(--muted)}
+.pane .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.pane-foot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
+.pane-foot li{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--edge)}
+
+/* Sections */
+section{scroll-margin-top:90px}
+.block{padding-block:clamp(64px,9vw,120px)}
+.h2{font-family:var(--font-display);font-weight:700;font-size:clamp(32px,4.6vw,58px);line-height:1.04;letter-spacing:-.025em;margin:0 0 16px;text-wrap:balance;max-width:16ch}
+.lede{color:var(--muted);max-width:560px;margin:0 0 48px}
+
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.service{position:relative;border-radius:var(--radius-l);padding:32px;overflow:hidden;min-width:0}
+.service::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.7),transparent 60%)}
+.service:hover::after{opacity:1}
+.service h3{font-family:var(--font-display);font-size:26px;letter-spacing:-.015em;margin:0 0 10px}
+.service p{color:var(--muted);margin:0 0 20px;max-width:46ch}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.tags li{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--fg)}
+.glyph{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:22px;background:var(--glass-strong);border:1px solid var(--edge)}
+.glyph svg{width:22px;height:22px}
+
+/* Process */
+.process{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px}
+.steps{position:relative;padding-left:44px;min-width:0}
+.step-list{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.rail{position:absolute;left:14px;top:8px;bottom:8px;width:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.rail b{position:absolute;inset:0;background:linear-gradient(var(--lilac),var(--mint),var(--peach));transform-origin:top;transform:scaleY(var(--fill,1))}
+.step{position:relative;border-radius:var(--radius-m);padding:22px 24px}
+.step::before{content:attr(data-n);position:absolute;left:-44px;top:20px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--fg)}
+.step h3{margin:0 0 4px;font-size:19px}
+.step p{margin:0;color:var(--muted);font-size:16px}
+
+/* Projects: pinned horizontal rail on wide screens */
+.projects{position:relative}
+.projects-pin{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-block:100px 40px}
+.track{display:flex;gap:20px;will-change:transform;padding-left:var(--gutter-l)}
+.project{flex:0 0 min(380px,82vw);border-radius:var(--radius-l);padding:28px;display:flex;flex-direction:column;gap:14px;text-decoration:none;min-height:300px;transition:border-color .2s}
+.project:hover{border-color:var(--line-strong)}
+.project .area{font-size:13px;font-weight:700;color:var(--lilac-ink)}
+.project h3{font-family:var(--font-display);font-size:24px;line-height:1.15;letter-spacing:-.01em;margin:0}
+.project p{margin:0;color:var(--muted);font-size:15.5px}
+.project .tags{margin-top:auto}
+.project.soon{background:linear-gradient(145deg,rgba(124,140,255,.35),rgba(94,226,208,.3))}
+.project .open{font-weight:700;font-size:14px;color:var(--fg)}
+
+/* About */
+.about{display:grid;grid-template-columns:minmax(0,1fr);max-width:820px}
+.about .panel p{font-size:clamp(17px,1.6vw,19px)}
+.panel{border-radius:var(--radius-l);padding:34px;min-width:0}
+.panel p{color:var(--muted);margin:0 0 14px}
+.panel p:last-child{margin:0}
+
+/* Contact */
+.contact{border-radius:36px;padding:clamp(32px,6vw,72px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center;background:linear-gradient(135deg,rgba(124,140,255,.28),rgba(255,179,107,.24) 70%),var(--glass)}
+.contact .h2{max-width:13ch}
+.contact-list{display:grid;gap:12px}
+.contact-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:18px;padding:14px 16px 14px 20px;min-width:0}
+.contact-row div{min-width:0}
+.contact-row small{display:block;color:var(--muted);font-size:13px;font-weight:600}
+.contact-row a,.contact-row .mail{font-weight:700;text-decoration:none;overflow-wrap:anywhere}
+.copy{all:unset;cursor:pointer;font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;border:1px solid var(--line-strong);white-space:nowrap}
+footer{padding-block:40px 56px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+
+/* Scroll reveal: elements always readable, they only gain depth as they arrive */
+.js .reveal{opacity:.4;transform:translateY(28px) scale(.98);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .links{display:none}
+  .hero-grid,.process,.about,.contact{grid-template-columns:minmax(0,1fr)}
+  .stack{height:220px}
+  .services{grid-template-columns:minmax(0,1fr)}
+  .projects{height:auto!important}
+  .projects-pin{position:relative;min-height:0;padding-block:clamp(64px,9vw,120px) 0}
+  .track{transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;padding-right:var(--gutter-r)}
+  .project{scroll-snap-align:start}
+}
+@media (max-width:480px){
+  .brand span{display:none}
+  .nav .btn-small{display:none}
+  .service,.panel{padding:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .btn:hover{transform:none}
+  .projects{height:auto!important}
+  .projects-pin{position:relative;min-height:0}
+  .track{transform:none!important;overflow-x:auto;padding-right:var(--gutter-r)}
+}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true">
+  <div class="blob lilac" data-depth="-0.25"></div>
+  <div class="blob mint" data-depth="0.18"></div>
+  <div class="blob peach" data-depth="-0.4"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap">
+    <nav class="nav glass" aria-label="Principal">
+      <a class="brand" href="#top">Lahass <span>Tech Services</span></a>
+      <div class="links">
+        <a href="#servicos" data-i18n="nav.services">Serviços</a>
+        <a href="#processo" data-i18n="nav.process">Como trabalho</a>
+        <a href="#projetos" data-i18n="nav.projects">Projetos</a>
+        <a href="#sobre" data-i18n="nav.about">Sobre</a>
+      </div>
+      <div class="nav-end">
+        <div class="lang" role="group" aria-label="Idioma">
+          <button type="button" id="lang-pt" data-lang="pt" aria-pressed="true">PT</button>
+          <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn-primary btn-small" href="#contato" data-i18n="nav.cta">Orçamento</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <div class="hero-sticky">
+    <div class="wrap stage">
+      <h1 class="name" id="hero-name"><small data-i18n="hero.kicker">Thiago Lahass, engenheiro de computação</small>Lahass</h1>
+      <div class="pane glass" id="hero-pane">
+        <p data-i18n-html="hero.text">Apps, sites e sistemas sob medida, do primeiro rascunho à publicação. <span>Direto de Vitória (ES), para clientes de qualquer lugar.</span></p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#contato" data-i18n="hero.cta">Pedir um orçamento</a>
+          <a class="btn btn-glass" href="#projetos" data-i18n="hero.secondary">Ver projetos</a>
+        </div>
+        <ul class="pane-foot" aria-label="Tecnologias">
+          <li>React Native</li><li>Next.js</li><li>Firebase</li><li>Node.js</li><li>Python</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="block" id="servicos">
+    <div class="wrap">
+      <h2 class="h2 reveal" data-i18n="services.title">O que eu faço</h2>
+      <p class="lede reveal" data-i18n="services.lede">Projetos completos ou só a parte que está faltando. Você fala com quem escreve o código, do começo ao fim.</p>
+      <div class="services">
+        <article class="service glass reveal">
+          <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg></div>
+          <h3 data-i18n="s1.title">Apps para celular</h3>
+          <p data-i18n="s1.text">Android e iOS com um só código. Login, pagamentos, assinaturas, anúncios e publicação na Google Play.</p>
+          <ul class="tags"><li>React Native</li><li>Expo</li><li>Kotlin</li></ul>
+        </article>
+        <article class="service glass reveal">
+          <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="14" rx="2.5"/><path d="M2.5 8.5h19M8 21h8"/></svg></div>
+          <h3 data-i18n="s2.title">Sites e sistemas web</h3>
+          <p data-i18n="s2.text">Sites rápidos, lojas e painéis administrativos que funcionam bem no celular e no computador.</p>
+          <ul class="tags"><li>React</li><li>Next.js</li><li>Tailwind</li></ul>
+        </article>
+        <article class="service glass reveal">
+          <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6M4.5 11.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></svg></div>
+          <h3 data-i18n="s3.title">Back-end e nuvem</h3>
+          <p data-i18n="s3.text">APIs, bancos de dados, regras de segurança e hospedagem, pensados para o custo crescer só junto com o uso.</p>
+          <ul class="tags"><li>Firebase</li><li>Node.js</li><li>NestJS</li><li>PostgreSQL</li></ul>
+        </article>
+        <article class="service glass reveal">
+          <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 16v-5M11 16V7M16 16v-8M21 16V4"/></svg></div>
+          <h3 data-i18n="s4.title">Dados, IA e hardware</h3>
+          <p data-i18n="s4.text">Análise de dados, modelos de aprendizado de máquina, visão computacional e protótipos com microcontroladores.</p>
+          <ul class="tags"><li>Python</li><li>PyTorch</li><li>OpenCV</li><li>Arduino</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="processo">
+    <div class="wrap process">
+      <div>
+        <h2 class="h2 reveal" data-i18n="process.title">Como funciona um projeto</h2>
+        <p class="lede reveal" data-i18n="process.lede">Etapas curtas e entregas que você consegue testar, para nada chegar de surpresa no final.</p>
+      </div>
+      <div class="steps" id="steps">
+        <span class="rail" aria-hidden="true"><b id="rail-fill"></b></span>
+        <ol class="step-list">
+        <li class="step glass reveal" data-n="1"><h3 data-i18n="p1.title">Conversa</h3><p data-i18n="p1.text">Entendo o problema, o público e o orçamento, e proponho o caminho mais simples que resolve.</p></li>
+        <li class="step glass reveal" data-n="2"><h3 data-i18n="p2.title">Protótipo</h3><p data-i18n="p2.text">Telas para você ver e opinar antes de qualquer linha de código definitiva.</p></li>
+        <li class="step glass reveal" data-n="3"><h3 data-i18n="p3.title">Desenvolvimento</h3><p data-i18n="p3.text">Entregas a cada etapa, com versões de teste no seu celular ou navegador.</p></li>
+        <li class="step glass reveal" data-n="4"><h3 data-i18n="p4.title">Publicação e suporte</h3><p data-i18n="p4.text">Publico na loja ou no seu domínio e continuo por perto para ajustes e novidades.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" id="projetos">
+    <div class="projects-pin">
+      <div class="wrap">
+        <h2 class="h2" data-i18n="projects.title">Projetos</h2>
+        <p class="lede" data-i18n="projects.lede">Da faculdade, da pesquisa e de clientes. O código dos projetos abertos está no GitHub.</p>
+      </div>
+      <div class="track" id="track">
+        <div class="project glass soon">
+          <span class="area" data-i18n="pr0.area">Cliente</span>
+          <h3 data-i18n="pr0.title">App educativo para Android</h3>
+          <p data-i18n="pr0.text">Um app completo, com contas, assinaturas e anúncios, feito do zero para um cliente. Em breve na Google Play.</p>
+          <ul class="tags"><li>React Native</li><li>Firebase</li></ul>
+        </div>
+        <a class="project glass" href="https://github.com/ThiagoLahass/Crane-automated-through-computer-vision" target="_blank" rel="noopener">
+          <span class="area" data-i18n="pr1.area">Visão computacional</span>
+          <h3 data-i18n="pr1.title">Guindaste automatizado</h3>
+          <p data-i18n="pr1.text">Um guindaste que localiza e posiciona a carga sozinho com uma câmera.</p>
+          <ul class="tags"><li>OpenCV</li><li>Arduino</li></ul>
+        </a>
+        <a class="project glass" href="https://github.com/ThiagoLahass/robot-that-solves-mazes" target="_blank" rel="noopener">
+          <span class="area" data-i18n="pr2.area">Robótica</span>
+          <h3 data-i18n="pr2.title">Robô que resolve labirintos</h3>
+          <p data-i18n="pr2.text">Encontra a saída de um labirinto de forma autônoma.</p>
+          <ul class="tags"><li>C</li><li>Arduino</li></ul>
+        </a>
+        <a class="project glass" href="https://github.com/ThiagoLahass/2024-1-P1-prediction-of-gait-parameters-for-lower-limb-prostheses-with-volitional-control" target="_blank" rel="noopener">
+          <span class="area" data-i18n="pr3.area">IA na saúde</span>
+          <h3 data-i18n="pr3.title">Marcha para próteses de perna</h3>
+          <p data-i18n="pr3.text">Modelo que prevê parâmetros da caminhada para próteses com controle voluntário.</p>
+          <ul class="tags"><li>Python</li><li>PyTorch</li></ul>
+        </a>
+        <a class="project glass" href="https://github.com/ThiagoLahass/2024-1-P2-alzheimers-level-prediction-based-on-brain-MRI-images" target="_blank" rel="noopener">
+          <span class="area" data-i18n="pr4.area">IA na saúde</span>
+          <h3 data-i18n="pr4.title">Alzheimer em ressonâncias</h3>
+          <p data-i18n="pr4.text">Classificação do estágio do Alzheimer a partir de imagens do cérebro.</p>
+          <ul class="tags"><li>Python</li><li>scikit-learn</li></ul>
+        </a>
+        <a class="project glass" href="https://github.com/ThiagoLahass/gam3r-store-ecommerce-fullstack-application" target="_blank" rel="noopener">
+          <span class="area" data-i18n="pr5.area">Full-stack</span>
+          <h3>Gam3r Store</h3>
+          <p data-i18n="pr5.text">Loja virtual completa, com front-end e back-end.</p>
+          <ul class="tags"><li>Next.js</li><li>NestJS</li></ul>
+        </a>
+        <a class="project glass" href="https://github.com/ThiagoLahass/Mini-Search-Engine" target="_blank" rel="noopener">
+          <span class="area" data-i18n="pr6.area">Sistemas</span>
+          <h3 data-i18n="pr6.title">Mini buscador</h3>
+          <p data-i18n="pr6.text">Um mecanismo de busca simples, escrito em C puro.</p>
+          <ul class="tags"><li>C</li></ul>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="sobre">
+    <div class="wrap">
+      <h2 class="h2 reveal" data-i18n="about.title">Sobre mim</h2>
+      <div class="about">
+        <div class="panel glass reveal">
+          <p data-i18n="about.p1">Sou engenheiro de computação pela UFES. Comecei por circuitos e microcontroladores, passei por inteligência artificial e hoje trabalho principalmente com apps e sistemas web.</p>
+          <p data-i18n="about.p2">Gosto de projetos em que dá para acompanhar tudo: da conversa inicial ao app na loja, incluindo os detalhes que ninguém vê, como segurança, custo de servidor e testes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contato">
+    <div class="wrap">
+      <div class="contact glass reveal">
+        <div>
+          <h2 class="h2" data-i18n="contact.title">Tem um projeto em mente?</h2>
+          <p class="lede" style="margin:0" data-i18n="contact.text">Conte o que você precisa. Eu respondo com perguntas, uma ideia de prazo e de valor, sem compromisso.</p>
+        </div>
+        <div class="contact-list">
+          <div class="contact-row glass">
+            <div><small>E-mail</small><a class="mail" id="mail" href="mailto:thiago.lahass@lahasstechservices.org">thiago.lahass@lahasstechservices.org</a></div>
+            <button type="button" class="copy" id="copy-mail" data-i18n="contact.copy">Copiar</button>
+          </div>
+          <div class="contact-row glass"><div><small>LinkedIn</small><a href="https://www.linkedin.com/in/thiago-lahass/" target="_blank" rel="noopener">in/thiago-lahass</a></div></div>
+          <div class="contact-row glass"><div><small>GitHub</small><a href="https://github.com/ThiagoLahass" target="_blank" rel="noopener">ThiagoLahass</a></div></div>
+          <div class="contact-row glass"><div><small>Instagram</small><a href="https://www.instagram.com/th_lahass/" target="_blank" rel="noopener">@th_lahass</a></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© <span id="year">2026</span> Lahass Tech Services</span><span data-i18n="footer.place">Vitória, Espírito Santo, Brasil</span></div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  /* ---------- Language ---------- */
+  var EN={
+    "nav.services":"Services","nav.process":"How I work","nav.projects":"Projects","nav.about":"About","nav.cta":"Get a quote",
+    "hero.kicker":"Thiago Lahass, computer engineer",
+    "hero.text":"Custom apps, websites and systems, from the first sketch to launch. <span>Based in Vitória, Brazil, working with clients anywhere.</span>",
+    "hero.cta":"Get a quote","hero.secondary":"See projects",
+    "services.title":"What I do","services.lede":"Full projects or just the missing piece. You talk to the person who writes the code, from start to finish.",
+    "s1.title":"Mobile apps","s1.text":"Android and iOS from one codebase. Sign-in, payments, subscriptions, ads and Google Play release.",
+    "s2.title":"Websites and web systems","s2.text":"Fast websites, stores and admin panels that work well on phones and computers.",
+    "s3.title":"Back end and cloud","s3.text":"APIs, databases, security rules and hosting, designed so costs only grow with real usage.",
+    "s4.title":"Data, AI and hardware","s4.text":"Data analysis, machine learning models, computer vision and microcontroller prototypes.",
+    "process.title":"How a project works","process.lede":"Short stages and builds you can try, so nothing comes as a surprise at the end.",
+    "p1.title":"Conversation","p1.text":"I learn the problem, the audience and the budget, and suggest the simplest path that solves it.",
+    "p2.title":"Prototype","p2.text":"Screens you can see and comment on before any final code is written.",
+    "p3.title":"Development","p3.text":"Deliveries at every stage, with test builds on your phone or browser.",
+    "p4.title":"Launch and support","p4.text":"I publish to the store or your domain and stay around for fixes and new features.",
+    "projects.title":"Projects","projects.lede":"From college, research and clients. The code of open projects is on GitHub.",
+    "pr0.area":"Client","pr0.title":"Educational Android app","pr0.text":"A complete app with accounts, subscriptions and ads, built from scratch for a client. Coming soon to Google Play.",
+    "pr1.area":"Computer vision","pr1.title":"Automated crane","pr1.text":"A crane that finds and places its load on its own using a camera.",
+    "pr2.area":"Robotics","pr2.title":"Maze-solving robot","pr2.text":"Finds its way out of a maze autonomously.",
+    "pr3.area":"AI in healthcare","pr3.title":"Gait for leg prostheses","pr3.text":"A model that predicts gait parameters for prostheses with volitional control.",
+    "pr4.area":"AI in healthcare","pr4.title":"Alzheimer's from MRI","pr4.text":"Classifies the stage of Alzheimer's disease from brain images.",
+    "pr5.area":"Full-stack","pr5.text":"A complete online store, front end and back end.",
+    "pr6.area":"Systems","pr6.title":"Mini search engine","pr6.text":"A simple search engine written in plain C.",
+    "about.title":"About me",
+    "about.p1":"I'm a computer engineer from UFES. I started with circuits and microcontrollers, went through artificial intelligence, and today I work mostly on apps and web systems.",
+    "about.p2":"I like projects where I can follow everything: from the first conversation to the app in the store, including the details nobody sees, like security, server costs and tests.",
+    "contact.title":"Have a project in mind?","contact.text":"Tell me what you need. I'll reply with questions and a rough idea of time and cost, with no commitment.",
+    "contact.copy":"Copy","contact.copied":"Copied",
+    "footer.place":"Vitória, Espírito Santo, Brazil"
+  };
+  var PT={};
+  document.querySelectorAll('[data-i18n]').forEach(function(el){PT[el.dataset.i18n]=el.textContent});
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el){PT[el.dataset.i18nHtml]=el.innerHTML});
+  PT["contact.copied"]="Copiado";
+
+  function setLang(lang){
+    var dict=lang==='en'?EN:PT;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){var v=dict[el.dataset.i18n];if(v!=null)el.textContent=v});
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){var v=dict[el.dataset.i18nHtml];if(v!=null)el.innerHTML=v});
+    root.lang=lang==='en'?'en':'pt-BR';
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===lang))});
+    try{localStorage.setItem('lahass-lang',lang)}catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang)})});
+  var saved=null;try{saved=localStorage.getItem('lahass-lang')}catch(e){}
+  if(saved==='en')setLang('en');
+
+  /* ---------- Copy e-mail ---------- */
+  var copyBtn=document.getElementById('copy-mail');
+  copyBtn.addEventListener('click',function(){
+    var mail=document.getElementById('mail').textContent;
+    var lang=root.lang==='en'?'en':'pt';
+    function done(){copyBtn.textContent=(lang==='en'?EN:PT)["contact.copied"];setTimeout(function(){copyBtn.textContent=(lang==='en'?EN:PT)["contact.copy"]},1600)}
+    function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById('mail'));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(mail).then(done,fallback)}else{fallback()}
+  });
+
+  /* ---------- Card spotlight ---------- */
+  document.querySelectorAll('.service').forEach(function(card){
+    card.addEventListener('pointermove',function(e){var r=card.getBoundingClientRect();card.style.setProperty('--mx',(e.clientX-r.left)+'px');card.style.setProperty('--my',(e.clientY-r.top)+'px')});
+  });
+
+  if(reduced)return;
+
+  /* ---------- Reveal ---------- */
+  if('IntersectionObserver' in window){
+    root.classList.add('js');
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<innerHeight)el.classList.add('in');else io.observe(el);
+    });
+  }
+
+  /* ---------- Scroll-driven motion ---------- */
+  var heroEl=document.getElementById('hero');
+  var heroName=document.getElementById('hero-name');
+  var heroPane=document.getElementById('hero-pane');
+  var blobs=[].slice.call(document.querySelectorAll('.blob'));
+  var steps=document.getElementById('steps');
+  var fill=document.getElementById('rail-fill');
+  var projects=document.getElementById('projetos');
+  var track=document.getElementById('track');
+  var wide=window.matchMedia('(min-width: 901px)');
+  var ticking=false;
+
+  function sizeProjects(){
+    if(!wide.matches){projects.style.height='';return}
+    var extra=Math.max(0,track.scrollWidth-innerWidth+80);
+    projects.style.height=(innerHeight+extra)+'px';
+  }
+  function clamp(v){return Math.max(0,Math.min(1,v))}
+  function update(){
+    ticking=false;
+    var y=scrollY,h=innerHeight;
+    /* The glass slides down off the name while the name grows a little. */
+    if(wide.matches){
+      var heroTravel=Math.max(1,heroEl.offsetHeight-h);
+      var p=clamp(y/heroTravel);
+      heroPane.style.transform='translate3d(0,'+(p*Math.min(190,h*.24))+'px,0) rotate('+(p*-2)+'deg)';
+      heroName.style.transform='translate3d(0,'+(-p*24)+'px,0) scale('+(1+p*.05)+')';
+    }else{
+      heroPane.style.transform='';heroName.style.transform='';
+    }
+    blobs.forEach(function(b){b.style.transform='translate3d(0,'+(y*parseFloat(b.dataset.depth))+'px,0)'});
+    var sr=steps.getBoundingClientRect();
+    steps.style.setProperty('--fill',clamp((h*.7-sr.top)/sr.height).toFixed(3));
+    if(wide.matches){
+      var pr=projects.getBoundingClientRect();
+      var total=projects.offsetHeight-h;
+      var q=total>0?clamp(-pr.top/total):0;
+      var dist=Math.max(0,track.scrollWidth-innerWidth+80);
+      track.style.transform='translate3d('+(-q*dist)+'px,0,0)';
+    }
+  }
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update)}}
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',function(){sizeProjects();update()});
+  sizeProjects();update();
+})();
+</script>
+</body>
+</html>
